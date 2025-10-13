@@ -1,11 +1,23 @@
 Mini Mundo - Recorte do mundo real
 
-A empresa IRCAtalog decidiu expandir seus negócios para o comércio eletrônico, criando um sistema de catálogo de produtos para venda online. Embora já utilize as redes sociais para divulgar seus produtos, a empresa percebeu que poderia aumentar sua rentabilidade e alcarçar um público ainda maior. Para a empresa, ter uma plataforma de gerenciamento da loja armazenando dados, é importante para a segurança, organização das informações e criação de novas estratégias para impulsionar seu crescimento.
+A empresa IRCAtalog decidiu expandir seus negócios para o comércio eletrônico, criando um sistema de catálogo de produtos para venda online. 
+Embora já utilize as redes sociais para divulgar seus produtos, a empresa percebeu que poderia aumentar sua rentabilidade e alcarçar um público ainda maior. 
+Para a empresa, ter uma plataforma de gerenciamento da loja armazenando dados, é importante para a segurança, 
+organização das informações e criação de novas estratégias para impulsionar seu crescimento.
 
-Solicitado que no sistema de vendas, os clientes podem fazer pedidos de produtos, nisso, o cliente pode ser pessoa física ou jurídica. No caso de PF, possui CPF e RG, em caso de jurídica tem CNPJ. Além disso, pode ter informações como nome, endereço e telefone armazenadas no sistemas. Os pedidos são feitos pelos clientes e contêm informações como a data e o valor do pedido. Cada pedido pertence apenas a um cliente, mas um cliente pode ter vários pedidos.
+Solicitado que no sistema de vendas, os clientes podem fazer pedidos de produtos, nisso, o cliente pode ser pessoa 
+física ou jurídica. No caso de PF, possui CPF e RG, em caso de jurídica tem CNPJ. 
+Além disso, pode ter informações como nome, endereço e telefone armazenadas no sistemas. Os pedidos são feitos pelos 
+clientes e contêm informações como a data e o valor do pedido. Cada pedido pertence apenas a um cliente, mas um cliente 
+pode ter vários pedidos.
 
-Os produtos disponíveis para venda no sistema sao fornecidos por fornecedores e armazenados em estoque. Cada produto deve ser identificado de forma exclusiva e pode ter informações como nome, preço e categoria armazenadas no sistema. A categoria, por sua vez, permite classificar os produtos em diferentes grupos, facilitando a busca e organização dos mesmos.
+Os produtos disponíveis para venda no sistema sao fornecidos por fornecedores e armazenados em estoque. Cada produto 
+deve ser identificado de forma exclusiva e pode ter informações como nome, preço e categoria armazenadas no sistema. 
+A categoria, por sua vez, permite classificar os produtos em diferentes grupos, facilitando a busca e organização 
+dos mesmos.
 
-Os fornecedores são identificados de forma que não se repetem e podem ter informações como nome e contatos armazenados no sistema. Cada produto pode ter vários fornecedores e cada fornecedor pode ter vários produtos.
+Os fornecedores são identificados de forma que não se repetem e podem ter informações como nome e contatos armazenados 
+no sistema. Cada produto pode ter vários fornecedores e cada fornecedor pode ter vários produtos.
 
-O estoque de produtos é gerenciado pelo sistema e cada registro de estoque deve ter uma identificador e conter informações como a quantiade de estoque.
+O estoque de produtos é gerenciado pelo sistema e cada registro de estoque deve ter uma identificador e conter 
+informações como a quantiade de estoque.
