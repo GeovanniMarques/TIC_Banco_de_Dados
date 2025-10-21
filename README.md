@@ -234,6 +234,239 @@ de ordem de serviços, baseado nas regras de negócio da empresa.
 
 ***Observação:*** Em sistemas como **SQL Server**, os tipos `TEXT` e `BLOB` são obsoletos e substituídos por `VARCHAR(MAX)` e `VARBINARY(MAX)`. No **MySQL**, a diferença entre `VARCHAR` e `NVARCHAR` é controlada pela Codificação de Caracteres (Charset) da tabela/coluna.
 
+#### 2. MySQL Workbench
+
+Familiarização e utilização de ambiente de gerenciamento de banco de dados MySQL.
+
+> 🗃️ [Documentação do MySQL](https://dev.mysql.com/doc/)
+
+#### 3. Criação e exclusão de banco de dados
+
+Por padrão, os comandos para criação de banco de dados são escritos em *UPPERCASE (letras maiúsculas)*, exceto nomes
+dos bancos, tabelas e atributos.
+
+Referente a nomeação, além de ser em *LOWERCASE (letras minúsculas)*, não usamos números em seu início e também não 
+pode conter espaços em palavras. O ideal é utilizar padrões como o `camelCase` e `snake_case`.
+
+**Exemplo de criação de banco de dados:**
+
+```SQL
+-- Loja é o nome do nosso banco de dados
+CREATE DATABASE IF NOT EXISTS loja
+
+-- Define o padrão de caracteres como pt-BR
+DEFAULT CHARACTER SET utf8mb4
+
+-- Define que a coleção de dados seja em pt-BR
+DEFAULT COLLATE utf8md4_unicode_ci;
+```
+
+**Exemplo de exclusão de banco de dados:**
+
+```SQL
+-- Loja é o nome do nosso banco de dados
+DROP DATABASE IF EXISTS loja;
+```
+
+#### 4. Criação de banco de dados com assistente
+
+Dentro do MySQL Workbench, siga os passos abaixo:
+
+*Clique no botão para criar um novo schema:*
+
+![Botão para criação de novo schema](./img/assistente_passo_1.png)
+
+*Após abrir essa janela, defina as configurações que deseja para o banco de dados (como nome e padrão de caracteres):*
+
+![Botão para criação de novo schema](./img/assistente_passo_2.png)
+
+*Clicando em `Apply` na tela anterior, aparecerá esta próxima mostrando os comandos aplicados e aguardando confirmação de criação de banco de dados:*
+
+![Botão para criação de novo schema](./img/assistente_passo_3.png)
+
+![Botão para criação de novo schema](./img/assistente_passo_4.png)
+
+*Mensagem de confirmação de criação de banco de dados:*
+
+![Botão para criação de novo schema](./img/assistente_conclusao.png)
+
+#### 5. Mysql_linha_comando
+
+Exemplo de utilização de banco de dados através do terminal Windows:
+
+```terminal
+Microsoft Windows [versão 10.0.26100.6899]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\user>cd\
+
+C:\>"Program Files"
+'"Program Files"' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+
+C:\>"Arquivos de Programas"
+'"Arquivos de Programas"' não é reconhecido como um comando interno
+ou externo, um programa operável ou um arquivo em lotes.
+
+C:\>cd "Program Files"
+
+C:\Program Files>cd MySQL
+
+C:\Program Files\MySQL>cd "MySQL Server 8.0"
+
+C:\Program Files\MySQL\MySQL Server 8.0>cd bin
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -h localhost -u root -p
+Enter password: ******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.42 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2025, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| biblioteca         |
+| company            |
+| e_commerce         |
+| escola             |
+| exercicio          |
+| first_example      |
+| hospital           |
+| information_schema |
+| loja_view          |
+| meubanco           |
+| mysql              |
+| performance_schema |
+| prova_bd           |
+| sakila             |
+| sistema_rh         |
+| sys                |
+| trabalho_nara      |
+| world              |
++--------------------+
+18 rows in set (0.07 sec)
+```
+
+#### 6. Criação e exclusão de tabelas
+
+Exemplo de criação e exclusão de tabelas:
+
+```SQL
+-- CRIAÇÃO DE TABELA
+
+-- Entramos em nosso database criado
+USE loja;
+
+CREATE TABLE Cliente(
+	id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(60),
+    cpf CHAR(11),
+    altura DECIMAL(3,2),
+    idade INT,
+    credito FLOAT,
+    ativo BIT(1),
+    data_criacao DATETIME, 
+    data_atualizacao DATETIME,
+    cidade VARCHAR(20),
+    rua VARCHAR(20),
+    numero INT,
+    cep CHAR(8),
+    nacionalidade VARCHAR(20) DEFAULT 'Brasil'
+);
+
+-- EXCLUSÃO DE TABELA
+DROP TABLE Cliente;
+```
+
+#### 7. Criação de tabelas com assistente:
+
+Dentro do MySQL Workbench, siga os passos abaixo:
+
+*Clique no botão para criar uma nova tabela:*
+
+![Botão para criação de nova tabela](./img/assistente_passo_1.png)
+
+*Após abrir essa janela, defina as configurações que deseja para a tabela, como nome e atributos, clicando onde a seta mostra. Nos botões de check, na linha onde está definindo o atributo, pode definir se ele será `primary key` ou `not null`, por exemplo:*
+
+![Definição de nova tabela](./img/assistente_tabela_passo_2.png)
+
+*Clique em `Apply` para criação de tabela:*
+
+![Definição de nova tabela](./img/assistente_tabela_passo_3.png)
+
+![Definição de nova tabela](./img/assistente_tabela_passo_4.png)
+
+![Definição de nova tabela](./img/assistente_tabela_passo_5.png)
+
+![Definição de nova tabela](./img/assistente_tabela_passo_6.png)
+
+*Mensagem de confirmação de criação de banco de dados:*
+
+![Definição de nova tabela](./img/assistente_tabela_passo_7.png)
+
+#### 8. Alterando tabelas
+
+Exemplo de alteração de tabelas:
+
+```SQL
+-- Entrando em nosso banco de dados
+USE loja;
+
+-- Criação de tabela
+CREATE TABLE funcionarios(
+    salario FLOAT,
+    data_de_nascimento DATE
+);
+
+-- Adicionando coluna
+ALTER TABLE funcionarios ADD COLUMN profissao VARCHAR(30);
+
+-- Adicionando coluna com constraint
+ALTER TABLE funcionarios ADD COLUMN nome VARCHAR(30) NOT NULL UNIQUE FIRST;
+
+-- Deletando coluna
+ALTER TABLE funcionarios DROP COLUMN profissao;
+
+-- Adicionando coluna após outro campo
+ALTER TABLE funcionarios ADD COLUMN profissao VARCHAR(30) AFTER nome;
+
+-- Adicionando coluna com primary key (chave primária)
+ALTER TABLE funcionarios ADD COLUMN id INT AUTO_INCREMENT;
+ALTER TABLE funcionarios ADD PRIMARY KEY(id);
+
+-- Descrição de tabela (onde podemos visualizar todas suas colunas)
+DESC funcionarios;
+-- Também pode ser DESCRIBE <nome_da_tabela>;
+
+-- Modificando coluna
+ALTER TABLE funcionarios MODIFY COLUMN id INT NOT NULL FIRST;
+-- FIRST coloca id como primeiro campo da tabela
+
+-- Modificando nome da coluna
+ALTER TABLE funcionarios CHANGE COLUMN profissao cargo VARCHAR(20) NOT NULL;
+
+-- Alterar nome da tabela
+ALTER TABLE funcionarios RENAME TO colaboradores;
+
+-- DELETANDO A TABELA
+DROP TABLE colaboradores;
+```
+
+#### 9. 1 para 1 - SQL
+
+
+
+#### 10. 
+
 ### Capítulo 3.2: DML
 
 
