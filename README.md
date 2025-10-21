@@ -463,12 +463,154 @@ DROP TABLE colaboradores;
 
 #### 9. 1 para 1 - SQL
 
+Neste trecho iremos aprender como criar o relacionamento 1 para 1 em SQL seguindo o modelo conceitual abaixo:
+
+![Modelo conceitual 1 para 1](./img/1_para_1_sql.png)
+
+```SQL
+CREATE TABLE Pessoa(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL,
+    cpf CHAR(11) NOT NULL UNIQUE
+);
 
 
-#### 10. 
 
-### Capítulo 3.2: DML
+CREATE TABLE Passaporte(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    numero CHAR(30) NOT NULL UNIQUE,
+    id_pessoa INT NOT NULL UNIQUE,
+    data_emissao DATETIME NOT NULL,
+    data_validade DATE NOT NULL,
+    CONSTRAINT fk_pessoa_passaporte FOREIGN KEY(id_pessoa) REFERENCES Pessoa(id)
+);
+```
 
+#### 10. 1 para N - SQL
 
+Neste trecho iremos aprender como criar o relacionamento 1 para muitos (N) em SQL seguindo o modelo conceitual abaixo:
+
+![Modelo conceitual 1 para N](./img/1_para_n_sql.png)
+
+```SQL
+CREATE TABLE Departamento(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL,
+);
+
+CREATE TABLE Cargo(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL,
+    salario DECIMAL(10, 2),
+    id_departamento INT NOT NULL UNIQUE,
+    CONSTRAINT fk_departamento_cargo FOREIGN KEY(id_pessoa) REFERENCES Pessoa(id)
+);
+```
+
+#### 11. N para N - SQL
+
+Neste trecho iremos aprender como criar o relacionamento muitos para muitos (N, N) em SQL seguindo o modelo conceitual abaixo:
+
+![Modelo conceitual N para N](./img/n_para_n_sql.png)
+
+![Modelo lógico N para N](./img/n_para_n_logico_sql.png)
+
+```SQL
+CREATE TABLE Usuario(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL,
+    email VARCHAR(50) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+);
+
+CREATE TABLE Roles(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(30) NOT NULL,
+);
+
+CREATE TABLE Usuario_roles(
+    id_usuario INT NOT NULL UNIQUE,
+    id_roles INT NOT NULL UNIQUE,
+    PRIMARY KEY(id_usuario, id_roles)
+    CONSTRAINT fk_usuario_roles FOREIGN KEY(id_usuario) REFERENCES Usuario(id)
+    CONSTRAINT fk_roles_usuario FOREIGN KEY(id_roles) REFERENCES Roles(id)
+);
+```
+
+### Capítulo 3.2: DML e DQL
+
+#### 1. Definição
+
+- DML: Data Manipulation Language (Linguagem de Manipulação de dados) são os comandos que interagem com os dados dentro das tabelas. São exemplo de comandos DML:
+
+    - INSERT;
+    - UPDATE;
+    - DELETE;
+
+- DQL: Data Query Language (Linguagem de Consulta de dados) são os comandos que consultam os dados dentro das tabelas. São exemplo de comandos DQL:
+
+    - SELECT;
+
+#### 2. Insert
+
+Exemplo de inserção de dados em tabelas:
+
+> *Utilizamos o insert de acordo com as colunas que possuimos em nossa tabela. Caso não saibamos, pode utilizar `DESC` ou `DESCRIBE` <nome_da_tabela> para verificar nossos campos:*
+
+```SQL
+DESCRIBE tbcolaborador;
+```
+
+![Retorno após utilização de describe](./img/insert_dml.png)
+
+Após a verificação dos campos e suas regras, como seu tipo, valores padrões e seu pode ser nulo ou não, escrevemos nosso comando de inserção da seguinte maneira:
+
+```SQL
+INSERT INTO <nome_da_tabela> (<nome_da_coluna>, <nome_da_coluna>, <nome_da_coluna>)
+VALUES (<valor>, <valor>, <valor>);
+```
+
+Utilizando o exemplo da tabela em nossa imagem, nosso comando seria:
+
+```SQL
+INSERT INTO tbcolaborador (nome, sexo, salario, altura, nacionalidade, nascimento, entrada)
+VALUES ('Pedro', 'M', 9000.50, 1.65, 'Portugal', '1991-09-29', NOW());
+```
+
+⚠️ **Alguns pontos que podem ser detalhados:**
+- Nossa 1ª coluna, `id`, não teve valor inserido por nós, porém, como é um atributo 
+`auto_increment`, automaticamente recebe um valor sequencial. Em nosso exemplo, caso 
+seja a 1ª inserção, receberá de forma automatica um `id` *1*. Caso seja a 2ª inserção, 
+recebe um `id` 2, e assim sucessivamente;
+- Campos definidos como `VARCHAR`, equivalente a `String` em linguagens de programação, 
+devem receber seus valores 'entre aspas' (simples ou duplas);
+- Campos definidos com um `DEFAULT`, mesmo que não recebam um valor na inserção,
+terão um valor que já foi definido como padrão. Em nosso exemplo, `nacionalidade` teria 
+como valor `Brasil`, que foi o `DEFAULT` definido;
+- Campos definidos como `ENUM` só podem receber os valores pré estabelecidos. Em nosso exemplo, 
+`sexo` é um campo `ENUM('M', 'F')` onde só pode ter atribuído como valor *M* ou *F*;
+- Campos com tipo `DATE` são escritos no padrão internacional (ISO 8601): `'AAAA-MM-DD'`;
+- Nosso campo `entrada`, definido como `DATETIME`, utilizamos uma função do SQL chamada `NOW()`, onde retorna a data e hora do sistema no momento da inserção;
+- Os campos definidos como `NOT NULL` obrigatoriamente devem receber valores;
+
+Podemos realizar inserções individuais ou agrupadas:
+
+```SQL
+INSERT INTO tbcolaborador (nome, sexo, salario, altura, nacionalidade, nascimento, entrada)
+VALUES 
+('Mauro', 'M', 8520.50, 1.85, 'França', '1996-08-19', NOW());
+('Marina', 'F', 6533.50, 1.55, 'Brasil', '1998-06-12', NOW());
+('Rose', 'f', 10169.50, 1.62, 'Brasil', '2003-11-01', NOW());
+```
+
+> ⚠️ O mais indicado é realizar inserções individuais para facilitar resolução em possível ocasionamento de erro.
+
+#### 3. Update
+
+#### 4. Delect
+
+#### 5. Comandos DQL
+
+#### 6. Cláusulas
 
 ## Capítulo 4: 
