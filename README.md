@@ -2,15 +2,35 @@
 
 Repositório para armazenamento de estudos referente ao curso de Banco de Dados, com MySQL e PostgreSQL, ministrado através do projeto [Residência em TIC 12](https://tic-hub.irede.org.br/).
 
+## 📖 Sumário
+<!-- - [Conteúdo;](#-conteúdo-estudado) -->
+- [Ferramentas e tecnologias utilizadas;](#-ferramentas-e-tecnologias-utilizadas)
+- [Capítulo 1 - Introducao aos Bancos de Dados;](#capítulo-1-introdução-aos-bancos-de-dados)
+- [Capítulo 2 - Modelagem de Dados;](#capítulo-2-modelagem-de-dados)
+- [Capítulo 3 - Uso de SGBD;](#capítulo-3-uso-de-sgbd)
+- [Capítulo 4 - Relacionamentos e Junções;](#capítulo-4-relacionamentos-e-junções)
+<!-- - [Licença](#capítulo-4-relacionamentos-e-junções)
+- [Autor](#capítulo-4-relacionamentos-e-junções)
+
+## 📘 Conteúdo estudado:
+- SQL;
+- MySQL Workbench;
+- PG Admin 4 (PostgreSQL);
+- brModelo; -->
+
 ## 🔧💻 Ferramentas e tecnologias utilizadas:
 - SQL;
 - MySQL Workbench;
 - PG Admin 4 (PostgreSQL);
 - brModelo;
 
-## Capítulo 1: Introdução aps Bancos de Dados
+## Capítulo 1: Introdução aos Bancos de Dados
+
+**Objetivos de aprendizagem:** Compreender o que é um banco de dados e sua importância, conhecer os principais conceitos e terminologias relacionados a bancos de dados.
 
 ## Capítulo 2: Modelagem de Dados
+
+**Objetivos de aprendizagem:** Aprender a explorar como os dados são organizados e gerenciados em bancos de dados, compreender sobre entidades, atributos e relacionamentos de maneira prática e interativa usando o brModelo.
 
 ### Capítulo 2.1: Modelagem de Dados
 
@@ -38,7 +58,7 @@ Os graus de relacionamentos se dividem em alguns tipos:
 ![Grau de relacionamento n-nário](img/relacionamento-n-nario.png)
 
 #### 3. Relacionamentos na prática
-<!-- ![Relacionamento de entidades](img/relacionamento-de-entidades.png) -->
+![Relacionamento de entidades](img/relacionamento-de-entidades.png)
 
 #### 4. Cardinalidade
 
@@ -46,7 +66,7 @@ Os graus de relacionamentos se dividem em alguns tipos:
 
 Os tipos de cardinalidade são:
 
-<!-- - `(0, n)` -->
+- `(0, n)`: indica que uma entidade pode se relacionar com zero ou várias ocorrências de outra entidade.
 
 - `(1, 1)`: quando uma entidade pode se comunicar apenas com um único objeto de outra entidade.
 
@@ -164,6 +184,8 @@ de ordem de serviços, baseado nas regras de negócio da empresa.
 ![Modelo lógico de projeto de ordem de serviço](./img/modelo-logico-ordem-servico.png)
 
 ## Capítulo 3: Uso de SGBD
+
+**Objetivos de aprendizagem:** Conhecer a linguagem SQL para aprender a criar, alterar e excluir objetos do banco de dados utilizando comandos DDL (Data Definition Language), assim como, consultas, inserções, atualizações e exclusões em um banco de dados utilizando comandos DML (Data Manipulation Language), tudo isso com Sistemas Gerenciadores de Bancos de Dados (SGBD), utilizando exemplos e cenários reais.
 
 ### Capítulo 3.1: DDL
 
@@ -551,7 +573,7 @@ CREATE TABLE Usuario_roles(
 
     - SELECT;
 
-#### 2. Insert
+#### 2. DML - Insert
 
 Exemplo de inserção de dados em tabelas:
 
@@ -605,12 +627,455 @@ VALUES
 
 > ⚠️ O mais indicado é realizar inserções individuais para facilitar resolução em possível ocasionamento de erro.
 
-#### 3. Update
+#### 3. DML - Update
 
-#### 4. Delect
+Para efetuar atualização de um dado de nossa tabela, escrevemos nosso comando da seguinte maneira:
+
+```SQL
+UPDATE <nome_da_tabela> SET <nome_da_coluna> = <valor> WHERE <nome_coluna_parametro> = <parametro>;
+```
+
+Um exemplo pratico do nosso comando seria:
+
+```SQL
+UPDATE tbcolaborador SET sexo = 'M' WHERE id = 3;
+```
+
+> ⚠️ Para atualizar dados, é imprescindível que nosso comando - *`UPDATE <nome_da_tabela> SET <nome_da_coluna> = <valor>`* - contenha uma cláusula definida com um parâmetro da encontrar local de alteração - *em nosso exemplo estamos alterando o campo `sexo` do colaborador cadastrado com `id 3`: `WHERE id = 3`. Caso não seja definida uma cláusula, TODOS os campos da coluna `sexo` serão alterados para `'M'`.*
+
+Podemos realizar atualizações individuais ou agrupadas:
+
+```SQL
+UPDATE tbcolaborador SET atualizacao = NOW(), nacionalidade = 'Brasil' WHERE id = 8;
+```
+
+> ⚠️ O mais indicado é realizar atualizações individuais para facilitar resolução em possível ocasionamento de erro.
+
+#### 4. DML - Delete
+
+Para efetuar a exclusão de uma linha de dados de nossa tabela, escrevemos nosso comando da seguinte maneira:
+
+```SQL
+DELETE FROM <nome_da_tabela> WHERE <nome_coluna_parametro> = <parametro>;
+```
+
+Um exemplo pratico do nosso comando seria:
+
+```SQL
+DELETE FROM tbcolaborador WHERE id = 3;
+```
+
+> ⚠️ Para deletar dados, é imprescindível que nosso comando - *`DELETE FROM <nome_da_tabela>`* - contenha uma cláusula definida com um parâmetro da encontrar local de alteração - *em nosso exemplo estamos deletando a linha de dados do colaborador cadastrado com `id 3`: `WHERE id = 3`. Caso não seja definida uma cláusula, TODOS os campos de nossa tabela serão `DELETADOS`.*
+Também é indicado utilizar como parâmetro uma informação que seja única do colaborador cadastrado, como o id em nossa tabela ou seu CPF.
+
+Podemos realizar exclusões totais na tabela:
+
+```SQL
+DELETE FROM tbcolaborador;
+```
+
+> ⚠️ Apesar do comando acima excluir todos as linhas da coluna, ele não "reseta" no `id auto_increment`. Se tinhamos 10 usuarios cadastrados antes da exclusão e, posteriormente, fizermos uma nova inserção, este novo usuário terá como id o valor `11`. Para realizar o "reset" do `id` para iniciar com valor `1`, utilizamos:
+
+```SQL
+TRUNCATE tbcolaborador;
+```
 
 #### 5. Comandos DQL
 
-#### 6. Cláusulas
+São comandos utilizados para realizar consultas no banco de dados. Para realizar uma consulta de dados de nossa tabela, escrevemos nosso comando da seguinte maneira:
 
-## Capítulo 4: 
+```SQL
+SELECT <nome_da_coluna> FROM <nome_da_tabela>;
+```
+
+São exemplos de seu uso:
+
+```SQL
+-- CONSULTA TODOS OS DADOS
+SELECT * FROM tbcolaborador;
+
+-- CONSULTA COM BETWEEN (E PARÂMETROS) E DIVERSAS COLUNAS
+SELECT nome, nascimento WHERE nascimento BETWEEN '2000-01-01' AND '2023-01-01';
+
+-- CONSULTA COM IN (BUSCA MAIS ESPECÍFICA)
+SELECT * FROM tbcolaborador WHERE nome IN('João', 'Ana');
+
+-- CONSULTA COM AND E OR
+SELECT * FROM tbcolaborador WHERE salario > 3000 AND salario < 5000;
+SELECT * FROM tbcolaborador WHERE salario > 3000 OR salario < 5000;
+
+-- CONSULTA COM LIKE
+SELECT * FROM tbcolaborador WHERE nome LIKE 'A%';
+SELECT * FROM tbcolaborador WHERE nome LIKE '%A';
+SELECT * FROM tbcolaborador WHERE nome LIKE '%A%';
+```
+
+⚠️ **Alguns pontos que podem ser detalhados:**
+- `*` significa `all (todos)`;
+- Também podemos utilizar cláusulas para filtrar resultados de nossa busca;
+- `LIKE 'A%'` retorna dados onde **iniciam** com a letra *A*;
+- `LIKE '%A'` retorna dados onde **terminam** com a letra *A*;
+- `LIKE '%A'` retorna dados onde **contenham** a letra *A* em qualquer parte;
+
+#### 6. Agregação
+
+Este trecho tratará de como utilizar funções de agregação com comandos DQL.
+
+```SQL
+-- CONSULTA COM COUNT
+SELECT COUNT(*) FROM tbcolaborador;
+SELECT COUNT(*) FROM tbcolaborador WHERE sexo = 'F';
+
+-- CONSULTA COM MAX
+SELECT MAX(salario) FROM tbcolaborador;
+SELECT MAX(salario) FROM tbcolaborador WHERE sexo = 'F';
+
+-- CONSULTA COM MIN
+SELECT MIN(salario) FROM tbcolaborador;
+SELECT MIN(salario) FROM tbcolaborador WHERE sexo = 'F';
+
+-- CONSULTA COM SUM
+SELECT SUM(salario) FROM tbcolaborador;
+SELECT SUM(salario) FROM tbcolaborador WHERE sexo = 'F';
+
+-- CONSULTA COM AVG
+SELECT AVG(salario) FROM tbcolaborador;
+SELECT AVG(salario) FROM tbcolaborador WHERE sexo = 'F';
+```
+
+⚠️ **Alguns pontos que podem ser detalhados:**
+- Também podemos utilizar funções de agragação com cláusulas;
+- `COUNT()` conta quantos registros temos;
+- `MAX()` retorna o maior valor da coluna;
+- `MIN()` retorna o menor valor da coluna;
+- `SUM()` retorna a soma de dados;
+- `AVG()` retorna a média de dados;
+
+#### 7. Agrupamentos
+
+Este trecho tratará de como distinguir e agrupar dados com comandos DQL.
+
+```SQL
+-- DISTINGUINDO POR DISTINCT
+SELECT DISTINCT(nacionalidade) FROM tbcolaboradores;
+
+-- AGRUPANDO COM GROUP BY
+SELECT sexo FROM tbcolaboradores GROUP BY sexo;
+
+-- AGRUPANDO COM GROUP BY E CONTANDO REGISTROS
+SELECT sexo, COUNT(sexo) FROM tbcolaboradores GROUP BY sexo;
+
+-- AGRUPANDO COM GROUP BY E HAVING
+SELECT COUNT(id), nacionalidade FROM tbcolaboradores
+GROUP BY nacionalidade
+HAVING COUNT(id) > 3;
+
+```
+
+⚠️ **Alguns pontos que podem ser detalhados:**
+- Também podemos utilizar funções de agrupamento com cláusulas;
+- `DISTINCT()` retira uma amostra de cada dado e exibe sem repetir as informações;
+- `GROUP BY` agrupa os dados em colunas - *agrupamos sempre pelo campo onde utilizamos no select*;
+- `HAVING` cláusula que utiliza um filtro a partir de uma função de agregação;
+
+
+## Capítulo 4: Relacionamentos e Junções
+
+**Objetivos de aprendizagem:** Compreender o que são relacionamentos e junções (joins) em bancos de dados, conhecer os diferentes tipos de junções e como usá-los para recuperar dados de maneira eficiente, utilizando exemplos e cenários reais.
+
+### Capítulo 4.1: Banco de dados e álgebra relacional
+
+#### 1. Conceito Joins e Outer
+
+- **Joins:** uma tecnica query usada para obter dados provenientes de duas ou mais tabelas, baseado em relacionamentos entre colunas. 
+
+    ![Joins](./img/joins.png)
+
+    Possuimos alguns tipos de joins:
+
+    - **Inner join**: retorna dados quando existe uma interseção - *uma correspondência* entre as tabelas:
+        ![Inner join](./img/inner_join.png)
+
+    - **Left join**: também pode ser chamado de outer left join, ou left outer join, retorna todos os dados que estão na tabela esquerda mesmo que não haja correspondência com a tabela direita (caso exista, é trazido com inner):
+        ![Left join](./img/left_join.png)
+
+    - **Right join**: também pode ser chamado de outer right join, ou right outer join, retorna todos os dados que estão na tabela direita mesmo que não haja correspondência com a tabela esquerda (caso exista, é trazido com inner):
+        ![Right join](./img/right_join.png)
+
+    - **Full join**: Também um outer, combinação de RIGHT e LEFT retornando registros de ambas as tabelas:
+        ![Full join](./img/full_join.png)
+
+#### 2. Inner join
+
+Retorna linhas quando houver, pelo menos, uma correspondência em ambas as tabelas.
+
+```SQL
+SELECT <nome_da_tabela_esquerda>.<nome_da_coluna>,
+       <nome_da_tabela_direita>.<nome_da_coluna>
+FROM <nome_da_tabela_esquerda>
+INNER JOIN <nome_da_tabela_direita> 
+ON <nome_da_tabela_esquerda>.<nome_da_coluna_correspondente> = <nome_da_tabela_direita>.<nome_da_coluna_correspondente>;
+```
+
+>⚠️ Geralmente esta coluna correspondente será a comparação de uma chave primária e uma chave estrangeira.
+
+Utilizando nossos exemplos anteriores, executaríamos o comando da seguinte maneira:
+
+```SQL
+SELECT cargos.nome,
+       departamentos.nome
+FROM cargos
+INNER JOIN departamentos
+ON cargos.id_departamento = departamentos.id;
+```
+
+Como retorno, teriamos a seguinte tabela:
+
+| nome | nome |
+|---|---|
+| Desenvolvedor Front-end | Desenvolvimento |
+| Desenvolvedor Back-end | Desenvolvimento |
+| Designer UX/UI|Design |
+| Analista de Suporte | Suporte  |
+
+Neste caso temos o título da coluna identico em ambas as tabelas, dificultando nosso leitura e análise do retorno.
+Para resolver essa questão, temos um recurso chamado `Alias`, que atua como um "apelido" teporaria para o campo onde é aplicado, seja uma tabela, coluna, expressão ou, até mesmo, quando utilizamos uma função. Conseguimos fazer essa alteração através do comando `AS` seguido pela nomenclatura para essa consulta, como abaixo:
+
+```SQL
+SELECT cargos.nome AS cargo,
+       departamentos.nome AS departamento
+FROM cargos
+INNER JOIN departamentos
+ON cargos.id_departamento = departamentos.id;
+```
+
+Dessa forma, nossa tabela de retorno seria definida da seguinte maneira:
+
+| cargo| departamento |
+|---|---|
+| Desenvolvedor Front-end | Desenvolvimento |
+| Desenvolvedor Back-end | Desenvolvimento |
+| Designer UX/UI|Design |
+| Analista de Suporte | Suporte  |
+
+Caso demandemos unir diversas tabelas para a nossa consulta, inseridos `INNER JOIN` quantas vezes forem necessárias:
+
+```SQL
+SELECT funcionarios.nome AS funcionario,
+       cargos.nome AS cargo,
+       departamentos.nome AS departamento
+FROM funcionarios
+INNER JOIN cargos
+ON funcionarios.id_departamento = cargos.id;
+INNER JOIN departamentos
+ON cargos.id_departamento = departamentos.id;
+```
+
+Retorno desta consulta:
+| funcionario | cargo| departamento |
+|---|---|---|
+| Maria Souza | Desenvolvedor Front-end | Desenvolvimento |
+| Thalia Alves | Desenvolvedor Back-end | Desenvolvimento |
+| Francisco Silva |Designer UX/UI|Design |
+| Ana Franca | Analista de Suporte | Suporte  |
+
+#### 3. Left join
+
+Também pode ser chamado de outer left join, ou left outer join, retorna todos os dados que estão na tabela esquerda mesmo que não haja correspondência com a tabela direita (caso exista, é trazido com inner):
+
+```SQL
+SELECT <nome_da_tabela_esquerda>.<nome_da_coluna>,
+       <nome_da_tabela_direita>.<nome_da_coluna>
+FROM <nome_da_tabela_esquerda>
+LEFT JOIN <nome_da_tabela_direita> 
+ON <nome_da_tabela_esquerda>.<nome_da_coluna_correspondente> = <nome_da_tabela_direita>.<nome_da_coluna_correspondente>;
+```
+
+>⚠️ Geralmente esta coluna correspondente será a comparação de uma chave primária e uma chave estrangeira.
+
+Utilizando nossos exemplos anteriores, executaríamos o comando da seguinte maneira:
+
+```SQL
+SELECT cargos.nome AS cargo,
+       departamentos.nome AS departamento
+FROM cargos
+LEFT JOIN departamentos
+ON cargos.id_departamento = departamentos.id;
+```
+
+| cargo | departamento |
+|---|---|
+| Desenvolvedor Front-end | Desenvolvimento |
+| Desenvolvedor Back-end | Desenvolvimento |
+| Designer UX/UI|Design |
+| Analista de Suporte | Suporte  |
+| Gerente de Projetos |   |
+
+🔍 Como podemos ver acima, a consulta nos retornou todos os campos de `cargos.nome`, mesmo sem correspondência com a tabela `departamentos`, visto tal exemplo em *Gerente de Projetos*.
+
+Também podemos obter uma consulta onde mostre somente os campos não correspondentes:
+
+```SQL
+SELECT cargos.nome AS cargo,
+       departamentos.nome AS departamento
+FROM cargos
+LEFT JOIN departamentos
+ON cargos.id_departamento = departamentos.id
+WHERE cargos.id_departamento IS NULL;
+```
+
+Retorno da consulta:
+
+| cargo | departamento |
+|---|---|
+| Gerente de Projetos |   |
+
+#### 4. Right join
+
+Também pode ser chamado de outer right join, ou right outer join, retorna todos os dados que estão na tabela direita mesmo que não haja correspondência com a tabela esquerda (caso exista, é trazido com inner):
+
+```SQL
+SELECT <nome_da_tabela_esquerda>.<nome_da_coluna>,
+       <nome_da_tabela_direita>.<nome_da_coluna>
+FROM <nome_da_tabela_esquerda>
+RIGHT JOIN <nome_da_tabela_direita> 
+ON <nome_da_tabela_esquerda>.<nome_da_coluna_correspondente> = <nome_da_tabela_direita>.<nome_da_coluna_correspondente>;
+```
+
+>⚠️ Geralmente esta coluna correspondente será a comparação de uma chave primária e uma chave estrangeira.
+
+Utilizando nossos exemplos anteriores, executaríamos o comando da seguinte maneira:
+
+```SQL
+SELECT cargos.nome AS cargo,
+       funcionarios.nome AS funcionario
+FROM cargos
+RIGHT JOIN funcionarios
+ON funcionarios.id_cargos = cargos.id;
+```
+
+| cargo | funcionario |
+|---|---|
+| Designer UX/UI | Ana Pereira |
+| Analista de Suporte | Carlos Souza |
+| Desenvolvedor Front-end | João Silva 
+| Desenvolvedor Back-end | Maria Santos |
+|  | Patrícia Oliveira |
+
+🔍 Como podemos ver acima, a consulta nos retornou todos os campos de `funcionarios.nome`, mesmo sem correspondência com a tabela `cargos`, visto tal exemplo em *Patrícia Oliveira*.
+
+Também podemos obter uma consulta onde mostre somente os campos não correspondentes:
+
+```SQL
+SELECT cargos.nome AS cargo,
+       funcionarios.nome AS funcionario
+FROM cargos
+RIGHT JOIN funcionarios
+ON funcionarios.id_cargos = cargos.id;
+WHERE funcionarios.id_cargos IS NULL;
+```
+
+Retorno da consulta:
+
+| cargo | funcionario |
+|---|---|
+|  | Patrícia Oliveira |
+
+#### 5. Full join
+
+Também um outer, combinação de RIGHT e LEFT retornando registros de ambas as tabelas:
+
+Utilizando nossos exemplos anteriores, executaríamos o comando da seguinte maneira:
+
+```SQL
+SELECT cargos.nome AS cargo,
+       funcionarios.nome AS funcionario
+FROM cargos
+LEFT JOIN funcionarios
+ON funcionarios.id_cargos = cargos.id
+UNION
+SELECT cargos.nome AS cargo,
+       funcionarios.nome AS funcionario
+FROM cargos
+RIGHT JOIN funcionarios
+ON funcionarios.id_cargos = cargos.id;
+```
+
+| cargo | funcionario |
+|---|---|
+| Desenvolvedor Front-end | João Silva 
+| Desenvolvedor Back-end | Maria Santos |
+| Designer UX/UI | Ana Pereira |
+| Analista de Suporte | Carlos Souza |
+| Gerente de Projetos |   |
+|  | Patrícia Oliveira |
+
+🔍 Como podemos ver acima, a consulta nos retornou todos os campos de ambas as tabelas.
+
+>⚠️ Importante salientar que `UNION` funciona no **MySQL**. Em bancos de dados como o PostgreSQL e Oracle Database, utilizamos o `FULL JOIN`.
+
+#### 6. Mais de um join
+
+**INNER JOIN -** retorna somente os funcionários que possuem um cargo e um departamento associados:
+
+```SQL
+SELECT funcionarios.nome AS funcionario,
+       cargos.nome AS cargo,
+       departamentos.nome AS departamento
+FROM funcionarios
+INNER JOIN cargos
+ON funcionarios.id_departamento = cargos.id;
+INNER JOIN departamentos
+ON cargos.id_departamento = departamentos.id;
+```
+
+Retorno desta consulta:
+| funcionario | cargo| departamento |
+|---|---|---|
+| João Silva | Desenvolvedor Front-end | Desenvolvimento |
+| Maria Santos | Desenvolvedor Back-end | Desenvolvimento |
+| Ana Pereira |Designer UX/UI|Design |
+| Carlos Souza | Analista de Suporte | Suporte  |
+
+**LEFT JOIN -** retorna todos os funcionários e seus cargos (se houver), independente de terem um departamento associado ou não:
+
+```SQL
+SELECT funcionarios.nome AS funcionario,
+       cargos.nome AS cargo,
+       departamentos.nome AS departamento
+FROM funcionarios
+LEFT JOIN cargos
+ON funcionarios.id_departamento = cargos.id;
+LEFT JOIN departamentos
+ON cargos.id_departamento = departamentos.id;
+```
+
+Retorno desta consulta:
+| funcionario | cargo| departamento |
+|---|---|---|
+| João Silva | Desenvolvedor Front-end | Desenvolvimento |
+| Maria Santos | Desenvolvedor Back-end | Desenvolvimento |
+| Ana Pereira |Designer UX/UI|Design |
+| Carlos Souza | Analista de Suporte | Suporte  |
+| Patrícia Oliveira |  |  |
+
+**RIGHT JOIN -** retorna todos os departamentos e as informações dos cargos correspondentes (se houver), independente de cargo estar associado a um funcionário ou não:
+
+```SQL
+SELECT funcionarios.nome AS funcionario,
+       cargos.nome AS cargo,
+       departamentos.nome AS departamento
+FROM funcionarios
+RIGHT JOIN cargos
+ON funcionarios.id_departamento = cargos.id;
+RIGHT JOIN departamentos
+ON cargos.id_departamento = departamentos.id;
+```
+
+Retorno desta consulta:
+| funcionario | cargo| departamento |
+|---|---|---|
+| João Silva | Desenvolvedor Front-end | Desenvolvimento |
+| Maria Santos | Desenvolvedor Back-end | Desenvolvimento |
+| Ana Pereira |Designer UX/UI|Design |
+| Carlos Souza | Analista de Suporte | Suporte  |
