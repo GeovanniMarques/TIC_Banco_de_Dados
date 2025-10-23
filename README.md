@@ -28,12 +28,21 @@ Repositório para armazenamento de estudos referente ao curso de Banco de Dados,
 
 **Objetivos de aprendizagem:** Compreender o que é um banco de dados e sua importância, conhecer os principais conceitos e terminologias relacionados a bancos de dados.
 
+<details>
+    <summary><strong>👉🏼🚨 Clique para acessar o Conteúdo Técnico completo</strong></summary>
+    
+    
+</details>
+
 ## Capítulo 2: Modelagem de Dados
 
 **Objetivos de aprendizagem:** Aprender a explorar como os dados são organizados e gerenciados em bancos de dados, compreender sobre entidades, atributos e relacionamentos de maneira prática e interativa usando o brModelo.
 
 ### Capítulo 2.1: Modelagem de Dados
 
+<details>
+    <summary><strong>👉🏼🚨 Clique para acessar o Conteúdo Técnico completo</strong></summary>
+    
 #### 1. Entidade forte x Entidade fraca:
 - `Entidade forte:` não depende de uma entidade e contém uma chave primária.
 - `Entidade fraca:` depende de uma entidade para existir e não contém *chaves parciais (não foi explicado o que é)*
@@ -104,7 +113,7 @@ Nesse caso, sabemos que cada tipo de cliente possui uma identificação específ
 ![Exemplo de especialização da entidade Cliente](./img/exemplo-especializacao.png)
 
 Generalização se aplica no caso de impossibilidade de especialização. Usando nosso atributo `telefone` e
-o transformando em uma entidade, a fim de exemplificar, sabemos que podemos ter diversos tipos de telefones, 
+o transformando em uma entidade, a fim de exemplificar, sabemos que podemos ter diversos tipos de telefones,
 como residencial e comercial. Apesar de poder ter essa definição, não podemos - e nem seria uma boa pratica -
 fazer a especialização porque, mesmo que mude o tipo, todo telefone contém os mesmos atributos: `ddd` e `numero`.
 
@@ -121,7 +130,13 @@ de modelo conceitual, utilizando o Diagrama de Entidade-Relacionamento (DER).
 
 ![Diagrama do capítulo 2.1](./img/diagrama-capitulo-2-1.png)
 
+</details>
+
 ### Capítulo 2.2:  Modelo Entidade-Relacionamento
+
+
+<details>
+    <summary><strong>👉🏼🚨 Clique para acessar o Conteúdo Técnico completo</strong></summary>
 
 #### 1. Nornalização
 
@@ -145,9 +160,9 @@ de atributos que não sejam PK.
 #### 5. Modelo lógico - tabela e campos
 
 O modelo lógico seria a representação detalhada que descreve a estrutura de dados e os seus relacionamentos, servindo
-como um passo a passo intermediário entre o modelo conceitual e o físico. Ele transforma os conceitos gerais do modelo 
-conceitual em uma estrutura mais técnica, definindo atributos, tipos de dados, chaves primárias e estrangeiras, e 
-relações de cardinalidade, tornando o projeto pronto para implementação. 
+como um passo a passo intermediário entre o modelo conceitual e o físico. Ele transforma os conceitos gerais do modelo
+conceitual em uma estrutura mais técnica, definindo atributos, tipos de dados, chaves primárias e estrangeiras, e
+relações de cardinalidade, tornando o projeto pronto para implementação.
 
 #### 6. Modelo lógico - multivalorado e composto
 
@@ -183,11 +198,17 @@ de ordem de serviços, baseado nas regras de negócio da empresa.
 
 ![Modelo lógico de projeto de ordem de serviço](./img/modelo-logico-ordem-servico.png)
 
+</details>
+
 ## Capítulo 3: Uso de SGBD
 
 **Objetivos de aprendizagem:** Conhecer a linguagem SQL para aprender a criar, alterar e excluir objetos do banco de dados utilizando comandos DDL (Data Definition Language), assim como, consultas, inserções, atualizações e exclusões em um banco de dados utilizando comandos DML (Data Manipulation Language), tudo isso com Sistemas Gerenciadores de Bancos de Dados (SGBD), utilizando exemplos e cenários reais.
 
 ### Capítulo 3.1: DDL
+
+
+<details>
+    <summary><strong>👉🏼🚨 Clique para acessar o Conteúdo Técnico completo</strong></summary>
 
 #### 1. Tipos
 
@@ -496,8 +517,6 @@ CREATE TABLE Pessoa(
     cpf CHAR(11) NOT NULL UNIQUE
 );
 
-
-
 CREATE TABLE Passaporte(
     id INT AUTO_INCREMENT PRIMARY KEY,
     numero CHAR(30) NOT NULL UNIQUE,
@@ -559,7 +578,12 @@ CREATE TABLE Usuario_roles(
 );
 ```
 
+</details>
+
 ### Capítulo 3.2: DML e DQL
+
+<details>
+    <summary><strong>👉🏼🚨 Clique para acessar o Conteúdo Técnico completo</strong></summary>
 
 #### 1. Definição
 
@@ -778,12 +802,16 @@ HAVING COUNT(id) > 3;
 - `GROUP BY` agrupa os dados em colunas - *agrupamos sempre pelo campo onde utilizamos no select*;
 - `HAVING` cláusula que utiliza um filtro a partir de uma função de agregação;
 
+</details>
 
 ## Capítulo 4: Relacionamentos e Junções
 
 **Objetivos de aprendizagem:** Compreender o que são relacionamentos e junções (joins) em bancos de dados, conhecer os diferentes tipos de junções e como usá-los para recuperar dados de maneira eficiente, utilizando exemplos e cenários reais.
 
 ### Capítulo 4.1: Banco de dados e álgebra relacional
+
+<details>
+    <summary><strong>👉🏼🚨 Clique para acessar o Conteúdo Técnico completo</strong></summary>
 
 #### 1. Conceito Joins e Outer
 
@@ -1079,3 +1107,4 @@ Retorno desta consulta:
 | Maria Santos | Desenvolvedor Back-end | Desenvolvimento |
 | Ana Pereira |Designer UX/UI|Design |
 | Carlos Souza | Analista de Suporte | Suporte  |
+</details>
